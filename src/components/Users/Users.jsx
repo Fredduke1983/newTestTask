@@ -1,11 +1,24 @@
 import { Card } from 'components/Card/OneCard';
 import { UsersStyle } from './Users.styled';
+import { useEffect, useState } from 'react';
 
-export const Users = ({ users, isFollows, changeFollowers }) => {
+export const Users = ({ users, isFollows, changeFollowers, selectedValue }) => {
+  const [filteredUsers, setFilteredUsers] = useState(users);
+
+  useEffect(() => {
+    if (selectedValue === 'follow') {
+      setFilteredUsers(users.filter(user => !isFollows.includes(user.id)));
+    } else if (selectedValue === 'following') {
+      setFilteredUsers(users.filter(user => isFollows.includes(user.id)));
+    } else {
+      setFilteredUsers(users);
+    }
+  }, [isFollows, selectedValue, users]);
+
   return (
     <UsersStyle>
-      {users &&
-        users.map(user => {
+      {filteredUsers.length > 0 &&
+        filteredUsers.map(user => {
           return (
             <Card
               key={user.id}

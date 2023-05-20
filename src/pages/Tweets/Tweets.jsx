@@ -43,7 +43,7 @@ export const Tweets = () => {
           <TweetterRightSide>
             <TweetterName>{tweetter.user}</TweetterName>
             <TweetterText>
-              He has {tweetter.followers} followers, and{' '}
+              He/She has {tweetter.followers} followers, and{' '}
               {tweetter.tweets.length} tweets
             </TweetterText>
           </TweetterRightSide>

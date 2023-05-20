@@ -5,6 +5,7 @@ import { getUsers } from 'utils/fetches.jsx';
 import { Notify } from 'components/Notify/Notify';
 import { Users } from 'components/Users/Users';
 import { LoadMore } from './Tweetters.styled';
+import { Filter } from 'components/Filter/Filter';
 
 export const Tweetters = ({ toggleIsLoading }) => {
   const [users, setUsers] = useState([]);
@@ -13,6 +14,12 @@ export const Tweetters = ({ toggleIsLoading }) => {
   );
   const [page, setpage] = useState(1);
   const [isActiveBtn, setIsActiveBtn] = useState(true);
+  const [selectedValue, setSelectedValue] = useState('All');
+
+  const handleSelectChange = event => {
+    const value = event.target.value;
+    setSelectedValue(value);
+  };
 
   const changeFollowers = data => {
     if (isFollows.includes(data.id)) {
@@ -45,7 +52,7 @@ export const Tweetters = ({ toggleIsLoading }) => {
       });
     }
     localStorage.setItem('user', [isFollows]);
-  }, [isFollows, page, toggleIsLoading, users.length]);
+  }, [isFollows, page, selectedValue, toggleIsLoading, users.length]);
 
   useEffect(() => {
     if (page > 1) {
@@ -70,11 +77,13 @@ export const Tweetters = ({ toggleIsLoading }) => {
 
   return (
     <>
+      <Filter handleSelectChange={handleSelectChange} />
       <Notify />
       <Users
         users={users}
         isFollows={isFollows}
         changeFollowers={changeFollowers}
+        selectedValue={selectedValue}
       />
       {isActiveBtn && <LoadMore onClick={handleOnMore}>Load More</LoadMore>}
     </>
