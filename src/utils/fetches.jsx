@@ -4,7 +4,7 @@ axios.defaults.baseURL =
   'https://6452a61dbce0b0a0f74cb532.mockapi.io/contacts/users/';
 
 export const getUsers = async page => {
-  const LIMIT = 3;
+  const LIMIT = 10;
 
   try {
     return await axios(`?page=${page}&limit=${LIMIT}`);

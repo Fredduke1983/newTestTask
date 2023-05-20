@@ -19,6 +19,7 @@ import bg from './img/bgpicture.png';
 import line from './img/centerLine.png';
 import frame from './img/frame.png';
 import { setUserFollowers } from '../../utils/fetches';
+import { nanoid } from 'nanoid';
 
 const Card = ({
   avatar,
@@ -34,7 +35,7 @@ const Card = ({
 
   const handleOnClick = () => {
     let followersToString = 0;
-    console.log('followersToString=', followersToString);
+
     isFollowing
       ? (followersToString = followers - 1)
       : (followersToString = followers + 1);
@@ -43,9 +44,7 @@ const Card = ({
     const body = JSON.stringify({
       followers: followersToString.toString(),
     });
-
-    console.log('followers=', followers);
-    console.log(typeof followers);
+    setUserFollowers(id, body);
     changeFollowers({
       user,
       tweets,
@@ -53,8 +52,6 @@ const Card = ({
       avatar,
       id,
     });
-
-    setUserFollowers(id, body);
   };
 
   return (
@@ -71,8 +68,12 @@ const Card = ({
 
       <CardFooter>
         <CounterList>
-          <Counter>{tweets.length.toLocaleString('en')} tweets</Counter>
-          <Counter>{followers.toLocaleString('en')} Followers</Counter>
+          <Counter key={nanoid()}>
+            {tweets.length.toLocaleString('en')} tweets
+          </Counter>
+          <Counter key={nanoid()}>
+            {followers.toLocaleString('en')} Followers
+          </Counter>
         </CounterList>
 
         {isFollowing ? (

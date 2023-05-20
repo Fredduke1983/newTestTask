@@ -12,6 +12,7 @@ function App() {
   const toggleIsLoading = load => {
     setIsLoading(load);
   };
+
   return (
     <>
       <div

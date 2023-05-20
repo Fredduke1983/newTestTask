@@ -24,25 +24,24 @@ function Users({ toggleIsLoading }) {
       setIsFollows([...isFollows, data.id]);
     }
 
-    setUsers([
-      ...users.map(user => {
-        const currentId = Object.values(user.id);
-        if (currentId[0] === data.id) {
+    setUsers(prevUsers =>
+      prevUsers.map(user => {
+        if (user.id === data.id) {
           return data;
         }
         return user;
-      }),
-    ]);
+      })
+    );
   };
 
   useEffect(() => {
     if (users.length < 1) {
       toggleIsLoading(true);
+
       getUsers(page).then(({ data }) => {
         setUsers(data);
         toggleIsLoading(false);
       });
-      setpage(2);
     }
 
     localStorage.setItem('user', [isFollows]);
@@ -53,21 +52,26 @@ function Users({ toggleIsLoading }) {
     //     }
     //   }
     // });
-  }, [isFollows, page, toggleIsLoading, users, users.length]);
+  }, [isFollows, page, toggleIsLoading, users.length]);
+
+  useEffect(() => {
+    if (page > 1) {
+      getUsers(page).then(({ data }) => {
+        toggleIsLoading(true);
+
+        if (data.length !== 0) {
+          setUsers(prevUsers => [...prevUsers, ...data]);
+          toggleIsLoading(false);
+        } else {
+          toast('No more tweetters');
+          toggleIsLoading(false);
+        }
+      });
+    }
+  }, [page, toggleIsLoading]);
 
   const handleOnMore = () => {
-    let p = page;
-    toggleIsLoading(true);
-    getUsers(page).then(({ data }) => {
-      if (data.length !== 0) {
-        setUsers([...users, ...data]);
-        setpage((p += 1));
-        toggleIsLoading(false);
-      } else {
-        toast('No more tweetters');
-        toggleIsLoading(false);
-      }
-    });
+    setpage(prevPage => prevPage + 1);
   };
 
   return (
