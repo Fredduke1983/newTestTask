@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
@@ -14,7 +14,7 @@ import {
   LineStyle,
   Avatar,
 } from './card.styled';
-import logo from './img/logoGoit.png';
+import logo from './img/LogoGoit.png';
 import bg from './img/bgpicture.png';
 import line from './img/centerLine.png';
 import frame from './img/frame.png';

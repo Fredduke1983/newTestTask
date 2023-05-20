@@ -46,13 +46,13 @@ function Users({ toggleIsLoading }) {
     }
 
     localStorage.setItem('user', [isFollows]);
-    const localFlag = localStorage.getItem('user').split(',');
-    users.map(user => {
-      for (const iterator of localFlag) {
-        if (user.id === iterator) {
-        }
-      }
-    });
+    // const localFlag = localStorage.getItem('user').split(',');
+    // users.map(user => {
+    //   for (const iterator of localFlag) {
+    //     if (user.id === iterator) {
+    //     }
+    //   }
+    // });
   }, [isFollows, page, toggleIsLoading, users, users.length]);
 
   const handleOnMore = () => {
