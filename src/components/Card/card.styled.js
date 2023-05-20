@@ -78,8 +78,7 @@ const CounterList = styled.ul`
 `;
 
 const Counter = styled.li`
-  font-family: 'Montserrat';
-  font-style: normal;
+  text-align: center;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -98,8 +97,6 @@ const Btn = styled.button`
   border-radius: 10px;
   cursor: pointer;
 
-  font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
