@@ -5,10 +5,11 @@ const UsersStyle = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+  padding: 40px;
 `;
 
 const LoadMore = styled.button`
-  margin: 10px auto;
+  margin: 0 auto 40px auto;
   padding: 10px;
   display: flex;
   justify-content: center;

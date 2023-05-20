@@ -12,6 +12,7 @@ function Users({ toggleIsLoading }) {
     localStorage.getItem('user') ? localStorage.getItem('user').split(',') : []
   );
   const [page, setpage] = useState(1);
+  const [isActiveBtn, setIsActiveBtn] = useState(true);
 
   const changeFollowers = data => {
     if (isFollows.includes(data.id)) {
@@ -65,6 +66,7 @@ function Users({ toggleIsLoading }) {
         } else {
           toast('No more tweetters');
           toggleIsLoading(false);
+          setIsActiveBtn(false);
         }
       });
     }
@@ -105,7 +107,7 @@ function Users({ toggleIsLoading }) {
             );
           })}
       </UsersStyle>
-      <LoadMore onClick={handleOnMore}>Load More</LoadMore>
+      {isActiveBtn && <LoadMore onClick={handleOnMore}>Load More</LoadMore>}
     </>
   );
 }
