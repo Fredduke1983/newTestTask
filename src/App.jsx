@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home/Home';
-import Users from './pages/Users/Users';
 import { Tweets } from './pages/Tweets/Tweets';
 import { RotatingLines } from 'react-loader-spinner';
 import { useState } from 'react';
+import { Tweetters } from './pages/Tweetters/Tweetters';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ function App() {
           <Route index element={<Home />} />
           <Route
             path="/tweeters"
-            element={<Users toggleIsLoading={toggleIsLoading} />}
+            element={<Tweetters toggleIsLoading={toggleIsLoading} />}
           />
           <Route path="/tweets/:id" element={<Tweets />} />
           <Route path="*" element={<Home />} />

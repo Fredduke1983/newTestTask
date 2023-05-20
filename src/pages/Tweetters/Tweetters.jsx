@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Card } from '../../components/Card/OneCard';
-import { getUsers } from '../../utils/fetches';
-import { LoadMore, UsersStyle } from './Users.styled';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import { getUsers } from 'utils/fetches.jsx';
+import { Notify } from 'components/Notify/Notify';
+import { Users } from 'components/Users/Users';
+import { LoadMore } from './Tweetters.styled';
 
-function Users({ toggleIsLoading }) {
+export const Tweetters = ({ toggleIsLoading }) => {
   const [users, setUsers] = useState([]);
   const [isFollows, setIsFollows] = useState(
     localStorage.getItem('user') ? localStorage.getItem('user').split(',') : []
@@ -44,15 +44,7 @@ function Users({ toggleIsLoading }) {
         toggleIsLoading(false);
       });
     }
-
     localStorage.setItem('user', [isFollows]);
-    // const localFlag = localStorage.getItem('user').split(',');
-    // users.map(user => {
-    //   for (const iterator of localFlag) {
-    //     if (user.id === iterator) {
-    //     }
-    //   }
-    // });
   }, [isFollows, page, toggleIsLoading, users.length]);
 
   useEffect(() => {
@@ -78,42 +70,17 @@ function Users({ toggleIsLoading }) {
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-        theme="dark"
+      <Notify />
+      <Users
+        users={users}
+        isFollows={isFollows}
+        changeFollowers={changeFollowers}
       />
-      <UsersStyle>
-        {users &&
-          users.map(user => {
-            return (
-              <Card
-                key={user.id}
-                user={user.user}
-                id={user.id}
-                avatar={user.avatar}
-                tweets={user.tweets}
-                followers={Number(user.followers)}
-                changeFollowers={changeFollowers}
-                isFollows={isFollows}
-              />
-            );
-          })}
-      </UsersStyle>
       {isActiveBtn && <LoadMore onClick={handleOnMore}>Load More</LoadMore>}
     </>
   );
-}
+};
 
-export default Users;
-
-Users.propTypes = {
+Tweetters.propTypes = {
   toggleIsLoading: PropTypes.func,
 };

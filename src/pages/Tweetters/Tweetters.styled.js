@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-const UsersStyle = styled.ul`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 40px;
-`;
-
 const LoadMore = styled.button`
   margin: 0 auto 40px auto;
   padding: 10px;
@@ -34,4 +26,4 @@ const LoadMore = styled.button`
   }
 `;
 
-export { UsersStyle, LoadMore };
+export { LoadMore };

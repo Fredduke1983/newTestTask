@@ -18,10 +18,10 @@ import logo from './img/LogoGoit.png';
 import bg from './img/bgpicture.png';
 import line from './img/centerLine.png';
 import frame from './img/frame.png';
-import { setUserFollowers } from '../../utils/fetches';
 import { nanoid } from 'nanoid';
+import { setUserFollowers } from 'utils/fetches';
 
-const Card = ({
+export const Card = ({
   avatar,
   tweets,
   followers,
@@ -85,8 +85,6 @@ const Card = ({
     </CardBody>
   );
 };
-
-export { Card };
 
 Card.propTypes = {
   avatar: PropTypes.string,
