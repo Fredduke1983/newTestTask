@@ -14,12 +14,14 @@ const HeaderList = styled.ul`
   a {
     text-decoration: none;
     transition: text-shadow 300ms;
+    color: #1a334f;
   }
   a:hover {
     text-shadow: 0px 1px 2px #000;
+    color: #a47afe;
   }
   .active {
-    color: blue;
+    color: #196fe9;
   }
 `;
 export { Header, HeaderList };

@@ -1,4 +1,4 @@
-import image from '../../assets/logo_orange.png';
+import image from './img/goit_new.jpg';
 import { HomeImg, HomeStyle, HomeTitle } from './Home.styled';
 
 export const Home = () => {
