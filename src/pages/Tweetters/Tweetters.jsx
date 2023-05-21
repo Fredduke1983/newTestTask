@@ -17,7 +17,7 @@ export const Tweetters = ({ toggleIsLoading }) => {
   const [selectedValue, setSelectedValue] = useState('All');
 
   const handleSelectChange = event => {
-    const value = event.target.value;
+    const value = event.value;
     setSelectedValue(value);
   };
 
