@@ -4,7 +4,7 @@ import { HomeImg, HomeStyle, HomeTitle } from './Home.styled';
 export const Home = () => {
   return (
     <HomeStyle>
-      <HomeTitle>Wellcome to</HomeTitle>
+      <HomeTitle>Welcome to</HomeTitle>
       <HomeImg src={image}></HomeImg>
     </HomeStyle>
   );
